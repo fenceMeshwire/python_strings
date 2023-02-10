@@ -26,8 +26,11 @@ identities = txt.split(';')
 with open('contacts.csv', 'wt', encoding='utf-8') as fout:
     fout.write('name' + ';' + 'department' + ';' + 'email-address' + '\n')
     for identity in identities:
-        st1 = identity.split(',')
-        st2 = st1[1].split('<')
-        st1 = st1[0].strip(' ')
-        st3 = [st1, st2[0].strip(' '), st2[1].strip('>')]
-        fout.write(st3[0] + ';' + st3[1] + ';' + st3[2] + '\n')
+        try:
+            st1 = identity.split(',')
+            st2 = st1[1].split('<')
+            st1 = st1[0].strip(' ')
+            st3 = [st1, st2[0].strip(' '), st2[1].strip('>')]
+            fout.write(st3[0] + ';' + st3[1] + ';' + st3[2] + '\n')
+        except IndexError:
+            pass
